@@ -39,14 +39,14 @@ const ChecklistItem = ({ item, card }) => {
     );
   };
 
-  const onDelete = async (e) => {
+  const onDelete = async () => {
     dispatch(deleteChecklistItem(card._id, item._id));
   };
 
   return (
     <div className={classes.checklistItem}>
       {editing ? (
-        <form onSubmit={(e) => onEdit(e)} className={classes.checklistFormLabel}>
+        <form onSubmit={onEdit} className={classes.checklistFormLabel}>
           <TextField
             variant='filled'
             fullWidth

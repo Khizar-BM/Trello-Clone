@@ -24,7 +24,7 @@ const BoardTitle = ({ board }) => {
       {board.title}
     </h2>
   ) : (
-    <form className='board-title-form' onSubmit={(e) => onSubmit(e)}>
+    <form className='board-title-form' onSubmit={onSubmit}>
       <TextField
         variant='outlined'
         required

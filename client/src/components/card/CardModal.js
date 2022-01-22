@@ -35,7 +35,7 @@ const CardModal = ({ cardId, open, setOpen, card, list }) => {
   return (
     <Modal open={open} onClose={() => setOpen(false)}>
       <div className={`${classes.paper} ${classes.cardModal}`}>
-        <form onSubmit={(e) => onTitleDescriptionSubmit(e)}>
+        <form onSubmit={onTitleDescriptionSubmit}>
           <div className={classes.modalTop}>
             <TextField
               variant='outlined'

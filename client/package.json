@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
     "moment": "^2.29.1",
+    "morgan": "^1.10.0",
     "react": "^16.14.0",
     "react-beautiful-dnd": "^13.0.0",
     "react-color": "^2.19.3",
@@ -45,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:8000"
 }

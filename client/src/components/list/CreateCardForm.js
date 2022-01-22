@@ -21,7 +21,7 @@ const CreateCardForm = ({ listId, setAdding }) => {
   };
 
   return (
-    <form ref={formRef} className='create-card-form' onSubmit={(e) => onSubmit(e)}>
+    <form ref={formRef} className='create-card-form' onSubmit={onSubmit}>
       <Card>
         <CardContent className='card-edit-content'>
           <TextField

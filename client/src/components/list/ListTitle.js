@@ -24,7 +24,7 @@ const ListTitle = ({ list }) => {
       {list.title}
     </h3>
   ) : (
-    <form onSubmit={(e) => onSubmit(e)}>
+    <form onSubmit={onSubmit}>
       <TextField required value={title} onChange={(e) => setTitle(e.target.value)} />
     </form>
   );

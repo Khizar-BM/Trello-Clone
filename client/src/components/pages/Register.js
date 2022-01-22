@@ -28,11 +28,16 @@ const Register = () => {
     password2: '',
   });
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     document.title = 'TrelloClone | Sign Up';
   }, []);
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   const { name, email, password, password2 } = formData;
 
@@ -45,11 +50,8 @@ const Register = () => {
     } else {
       dispatch(register({ name, email, password }));
     }
-  };
 
-  if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
-  }
+  };
 
   return (
     <Container component='main' maxWidth='xs' className={classes.container}>
@@ -61,7 +63,7 @@ const Register = () => {
         <Typography component='h1' variant='h5'>
           Sign up
         </Typography>
-        <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
+        <form className={classes.form} onSubmit={onSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -73,7 +75,7 @@ const Register = () => {
                 label='Your Name'
                 autoFocus
                 value={name}
-                onChange={(e) => onChange(e)}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -85,7 +87,7 @@ const Register = () => {
                 name='email'
                 autoComplete='email'
                 value={email}
-                onChange={(e) => onChange(e)}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -97,7 +99,7 @@ const Register = () => {
                 label='Password'
                 type='password'
                 value={password}
-                onChange={(e) => onChange(e)}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -109,7 +111,7 @@ const Register = () => {
                 label='Confirm Password'
                 type='password'
                 value={password2}
-                onChange={(e) => onChange(e)}
+                onChange={onChange}
               />
             </Grid>
           </Grid>

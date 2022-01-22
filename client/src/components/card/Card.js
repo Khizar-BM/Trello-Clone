@@ -136,7 +136,7 @@ const Card = ({ cardId, list, index }) => {
           )}
         </Draggable>
       ) : (
-        <form className='create-card-form' onSubmit={(e) => onSubmitEdit(e)}>
+        <form className='create-card-form' onSubmit={onSubmitEdit}>
           <CardMUI>
             <CardContent className='card-edit-content'>
               <TextField

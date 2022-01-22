@@ -26,7 +26,7 @@ const CreateChecklistItem = ({ cardId }) => {
     </div>
   ) : (
     <div className={classes.checklistBottom}>
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form onSubmit={onSubmit}>
         <TextField
           variant='filled'
           fullWidth

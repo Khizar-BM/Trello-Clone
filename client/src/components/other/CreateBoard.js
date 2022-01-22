@@ -17,6 +17,10 @@ const CreateBoard = ({ history }) => {
     dispatch(addBoard({ title }, history));
   };
 
+  const onChange = (e) => {
+      setTitle(e.target.value)
+  }
+
   const body = (
     <div className={`${classes.paper} ${classes.createBoardModal}`}>
       <div className={classes.modalTop}>
@@ -25,7 +29,7 @@ const CreateBoard = ({ history }) => {
           <CloseIcon />
         </Button>
       </div>
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form onSubmit={onSubmit}>
         <TextField
           variant='outlined'
           margin='normal'
@@ -34,7 +38,7 @@ const CreateBoard = ({ history }) => {
           label='Add board title'
           autoFocus
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={onChange }
         />
         <Button type='submit' fullWidth variant='contained' color='primary'>
           Create Board

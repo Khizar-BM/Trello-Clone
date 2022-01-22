@@ -33,16 +33,16 @@ const Login = () => {
     document.title = 'TrelloClone | Sign In';
   }, []);
 
-  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(login(email, password));
-  };
-
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
+
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
+
+  };
 
   return (
     <Container component='main' maxWidth='xs' className={classes.container}>

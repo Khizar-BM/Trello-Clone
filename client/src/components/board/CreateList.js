@@ -28,7 +28,7 @@ const CreateList = () => {
     </div>
   ) : (
     <div ref={formRef} className='create-list-form'>
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form onSubmit={onSubmit}>
         <TextField
           variant='outlined'
           fullWidth
