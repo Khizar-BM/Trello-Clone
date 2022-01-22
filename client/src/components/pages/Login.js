@@ -1,9 +1,7 @@
 // https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import {login} from '../../actions/auth';
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,6 +14,7 @@ import Container from '@material-ui/core/Container';
 
 import Copyright from '../other/Copyright';
 import useStyles from '../../utils/formStyles';
+import {AuthContext} from "../../contexts/authStore";
 
 const Login = () => {
     const classes = useStyles();
@@ -25,8 +24,8 @@ const Login = () => {
         email: '',
         password: '',
     });
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    const dispatch = useDispatch();
+    const {auth: {isAuthenticated}, login} = useContext(AuthContext)
+
 
     const {email, password} = formData;
 
@@ -35,16 +34,16 @@ const Login = () => {
     }, []);
 
     useEffect(() => {
-          if (isAuthenticated) {
-              navigate("/dashboard");
-          }
-        },[isAuthenticated]
+            if (isAuthenticated) {
+                navigate("/dashboard");
+            }
+        }, [isAuthenticated]
     )
 
     const onChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
     const onSubmit = async (e) => {
         e.preventDefault();
-        dispatch(login(email, password));
+        login(email, password);
 
     };
 

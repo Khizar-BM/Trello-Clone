@@ -11,8 +11,9 @@ import {
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
+
 // Load User
-export const loadUser = () => async (dispatch) => {
+export const loadUser = async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -32,7 +33,7 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register User
-export const register = ({ name, email, password }) => async (dispatch) => {
+export const register = async (name, email, password ,dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 };
 
 // Login User
-export const login = (email, password) => async (dispatch) => {
+export const login = async (dispatch, email, password) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -96,6 +97,6 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 // Logout
-export const logout = () => async (dispatch) => {
+export const logout = async (dispatch) => {
   dispatch({ type: LOGOUT });
 };
