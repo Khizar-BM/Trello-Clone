@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getBoards } from '../../actions/board';
 import CreateBoard from '../other/CreateBoard';
 import Navbar from '../other/Navbar';
@@ -11,6 +11,7 @@ const Dashboard = () => {
   const boards = useSelector((state) => state.board.boards);
   const loading = useSelector((state) => state.board.dashboardLoading);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getBoards());
@@ -20,9 +21,12 @@ const Dashboard = () => {
     document.title = 'Your Boards | TrelloClone';
   }, []);
 
-  if (!isAuthenticated) {
-    return <Redirect to='/' />;
-  }
+  useEffect(() => {
+        if (!isAuthenticated) {
+          navigate("/");
+        }
+      },[isAuthenticated]
+  )
 
   return (
     <div className='dashboard-and-navbar'>

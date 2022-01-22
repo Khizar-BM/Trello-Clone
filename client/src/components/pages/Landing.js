@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react';
 import { Button } from '@material-ui/core';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Landing = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = 'TrelloClone';
   }, []);
 
-  if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
-  }
+  useEffect(() => {
+        if (isAuthenticated) {
+          navigate("/dashboard");
+        }
+      },[isAuthenticated]
+  )
 
   return (
     <section className='landing'>

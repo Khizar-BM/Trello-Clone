@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { getBoard, moveCard, moveList } from '../../actions/board';
 import { CircularProgress, Box } from '@material-ui/core';
@@ -11,22 +11,27 @@ import CreateList from '../board/CreateList';
 import Members from '../board/Members';
 import Navbar from '../other/Navbar';
 
-const Board = ({ match }) => {
+const Board = ( ) => {
+  const params = useParams();
   const board = useSelector((state) => state.board.board);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getBoard(match.params.id));
-  }, [dispatch, match.params.id]);
+    dispatch(getBoard(params.id));
+  }, [dispatch, params.id]);
 
   useEffect(() => {
     if (board?.title) document.title = board.title + ' | TrelloClone';
   }, [board?.title]);
 
-  if (!isAuthenticated) {
-    return <Redirect to='/' />;
-  }
+  useEffect(() => {
+        if (!isAuthenticated) {
+          navigate("/");
+        }
+      },[isAuthenticated]
+  )
 
   const onDragEnd = (result) => {
     const { source, destination, draggableId, type } = result;
@@ -47,12 +52,12 @@ const Board = ({ match }) => {
   };
 
   return !board ? (
-    <Fragment>
+    <>
       <Navbar />
       <Box className='board-loading'>
         <CircularProgress />
       </Box>
-    </Fragment>
+    </>
   ) : (
     <div
       className='board-and-navbar'

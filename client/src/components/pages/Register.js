@@ -1,7 +1,7 @@
 // https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-up
 
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
@@ -20,6 +20,7 @@ import useStyles from '../../utils/formStyles';
 
 const Register = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -35,9 +36,12 @@ const Register = () => {
     document.title = 'TrelloClone | Sign Up';
   }, []);
 
-  if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
-  }
+  useEffect(() => {
+        if (isAuthenticated) {
+          navigate("/dashboard");
+        }
+      },[isAuthenticated]
+  )
 
   const { name, email, password, password2 } = formData;
 

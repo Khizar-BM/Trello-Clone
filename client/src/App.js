@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from './components/pages/Landing';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
@@ -27,16 +27,16 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Fragment>
+        <>
           <Alert />
-          <Switch>
-            <Route exact path='/' component={Landing} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/board/:id' component={Board} />
-          </Switch>
-        </Fragment>
+          <Routes>
+            <Route  path='/' element={<Landing/>} />
+            <Route  path='/register' element={<Register/>} />
+            <Route  path='/login' element={<Login/>} />
+            <Route  path='/dashboard' element={<Dashboard/>} />
+            <Route  path='/board/:id' element={<Board/>} />
+          </Routes>
+        </>
       </Router>
     </Provider>
   );

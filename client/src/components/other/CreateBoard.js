@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "../../utils/routerUtils";
 import { addBoard } from '../../actions/board';
 import { Modal, TextField, Button } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
