@@ -36,7 +36,6 @@ const AuthStore = (props) => {
             });
         }
     };
-
     const register = async ({name, email, password}) => {
         const config = {
             headers: {
@@ -67,8 +66,7 @@ const AuthStore = (props) => {
             });
         }
     };
-
-    const login = async ( email, password) => {
+    const login = async (email, password) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -98,9 +96,8 @@ const AuthStore = (props) => {
             });
         }
     };
-
-    const logout =  async () => {
-        dispatch({ type: LOGOUT });
+    const logout = async () => {
+        dispatch({type: LOGOUT});
     };
 
     return (<AuthContext.Provider value={{auth, loadUser, register, login, logout}}>

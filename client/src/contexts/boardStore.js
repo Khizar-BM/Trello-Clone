@@ -327,8 +327,10 @@ const BoardStore = (props) => {
     const moveList = async (listId, formData) => {
         try {
             const body = JSON.stringify(formData);
+            console.log(formData)
 
             const res = await axios.patch(`/api/lists/move/${listId}`, body, config);
+            console.log(res)
 
             dispatch({
                 type: MOVE_LIST,

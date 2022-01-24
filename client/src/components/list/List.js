@@ -11,6 +11,7 @@ import {BoardContext} from "../../contexts/boardStore";
 const List = ({listId, index}) => {
     const [addingCard, setAddingCard] = useState(false);
     const {board: {board: {listObjects}}, getList} = useContext(BoardContext);
+    //to add useMemo
     const list = listObjects.find((object) => object._id === listId)
 
 
