@@ -16,7 +16,6 @@ import Container from '@material-ui/core/Container';
 import Copyright from '../other/Copyright';
 import useStyles from '../../utils/formStyles';
 import {AuthContext} from "../../contexts/authStore";
-import {AlertContext} from "../../contexts/alertStore";
 
 const Register = () => {
     const classes = useStyles();
@@ -28,8 +27,7 @@ const Register = () => {
         password: '',
         password2: '',
     });
-    const {auth: {isAuthenticated}, register} = useContext(AuthContext)
-    const {setAlert} = useContext(AlertContext)
+    const {auth: {isAuthenticated}, register, setAlert} = useContext(AuthContext)
 
     useEffect(() => {
         document.title = 'TrelloClone | Sign Up';

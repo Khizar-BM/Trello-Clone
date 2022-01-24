@@ -8,7 +8,7 @@ import {
   LOGOUT,
 } from '../actions/types';
 
-export const initialState = {
+export const authInitialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loading: true,

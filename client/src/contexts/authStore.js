@@ -1,5 +1,6 @@
-import React, {createContext, useContext, useReducer} from 'react';
-import reducer, {initialState} from "../reducers/auth";
+import React, {createContext, useReducer} from 'react';
+import authReducer, {authInitialState} from "../reducers/auth";
+import alertReducer, {alertInitialState} from "../reducers/alert";
 import setAuthToken from "../utils/setAuthToken";
 import axios from "axios";
 import {
@@ -8,16 +9,25 @@ import {
     LOGIN_SUCCESS,
     LOGOUT,
     REGISTER_FAIL,
-    REGISTER_SUCCESS,
+    REGISTER_SUCCESS, REMOVE_ALERT, SET_ALERT,
     USER_LOADED
 } from "../actions/types";
-import {AlertContext} from "./alertStore";
+import {v4 as uuidv4} from "uuid";
 
 export const AuthContext = createContext({})
 
 const AuthStore = (props) => {
-    const [auth, dispatch] = useReducer(reducer, initialState);
-    const {setAlert} = useContext(AlertContext)
+    const [auth, dispatch] = useReducer(authReducer, authInitialState);
+    const [alerts, alertDispatch] = useReducer(alertReducer, alertInitialState);
+
+    const setAlert = (msg, alertType, timeout = 5000) => {
+        const id = uuidv4();
+        alertDispatch({
+            type: SET_ALERT,
+            payload: {msg, alertType, id},
+        });
+        setTimeout(() => alertDispatch({type: REMOVE_ALERT, payload: id}), timeout);
+    };
 
     const loadUser = async () => {
         if (localStorage.token) {
@@ -96,11 +106,9 @@ const AuthStore = (props) => {
             });
         }
     };
-    const logout = async () => {
-        dispatch({type: LOGOUT});
-    };
+    const logout = () => dispatch({type: LOGOUT})
 
-    return (<AuthContext.Provider value={{auth, loadUser, register, login, logout}}>
+    return (<AuthContext.Provider value={{auth, alerts, setAlert, loadUser, register, login, logout}}>
         {props.children}
     </AuthContext.Provider>)
 

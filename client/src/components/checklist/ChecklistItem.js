@@ -24,7 +24,7 @@ const ChecklistItem = ({item, card}) => {
         setEditing(false);
     };
 
-    const onComplete = () => {
+    const onComplete = (e) => {
         completeChecklistItem({
             cardId: card._id, complete: e.target.checked, itemId: item._id,
         });

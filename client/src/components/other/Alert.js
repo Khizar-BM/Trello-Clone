@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import AlertMUI from '@material-ui/lab/Alert';
-import {AlertContext} from "../../contexts/alertStore";
+import {AuthContext} from "../../contexts/authStore";
 
 const Alert = () => {
-    const {alerts} = useContext(AlertContext)
+    const {alerts} = useContext(AuthContext)
     return (
         (alerts.length ? alerts.map((alert) => (
             <AlertMUI severity={alert.alertType} key={alert.id}>

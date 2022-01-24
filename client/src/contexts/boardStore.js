@@ -28,14 +28,13 @@ import {
 } from "../actions/types";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-import {AlertContext} from "./alertStore";
-
+import {AuthContext} from "./authStore";
 
 export const BoardContext = createContext({})
 
 const BoardStore = (props) => {
     const [board, dispatch] = useReducer(reducer, initialState);
-    const {setAlert} = useContext(AlertContext)
+    const {setAlert} = useContext(AuthContext)
     const navigate = useNavigate();
 
 
