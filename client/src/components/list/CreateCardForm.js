@@ -13,7 +13,7 @@ const CreateCardForm = ({listId, setAdding}) => {
         formRef && formRef.current && formRef.current.scrollIntoView();
     }, [title]);
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         addCard({title, listId});
         setTitle('');

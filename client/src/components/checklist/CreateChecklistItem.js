@@ -11,7 +11,7 @@ const CreateChecklistItem = ({ cardId }) => {
   const [text, setText] = useState('');
   const {addChecklistItem} = useContext(BoardContext);
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     addChecklistItem(cardId, { text });
     setText('');

@@ -46,7 +46,7 @@ const Register = () => {
 
     const onChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         if (password !== password2) {
             setAlert('Passwords do not match', 'error');

@@ -21,12 +21,12 @@ const CardModal = ({cardId, open, setOpen, card, list}) => {
         setDescription(card.description);
     }, [card]);
 
-    const onTitleDescriptionSubmit = async (e) => {
+    const onTitleDescriptionSubmit = (e) => {
         e.preventDefault();
         editCard(cardId, {title, description});
     };
 
-    const onArchiveCard = async () => {
+    const onArchiveCard = () => {
         archiveCard(cardId, true);
         setOpen(false);
     };

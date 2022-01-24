@@ -11,15 +11,13 @@ const DeleteCard = ({cardId, setOpen, list}) => {
     const [openDialog, setOpenDialog] = useState(false);
     const {deleteCard} = useContext(BoardContext);
 
-    const handleClickOpen = () => {
-        setOpenDialog(true);
-    };
+    const handleClickOpen = () => setOpenDialog(true);
 
-    const handleClose = () => {
-        setOpenDialog(false);
-    };
 
-    const onDeleteCard = async () => {
+    const handleClose = () => setOpenDialog(false);
+
+
+    const onDeleteCard = () => {
         deleteCard(list._id, cardId);
         setOpenDialog(false);
         setOpen(false);

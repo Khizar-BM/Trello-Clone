@@ -51,8 +51,7 @@ const MoveCard = ({cardId, setOpen, thisList}) => {
         }
     }, [thisList, cardId, listObject, cardObjects]);
 
-    const onSubmit = async () => {
-
+    const onSubmit = () => {
         moveCard(cardId, {fromId: thisList._id, toId: listObject._id, toIndex: position});
         setOpen(false);
     };

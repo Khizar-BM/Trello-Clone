@@ -12,7 +12,7 @@ const ListTitle = ({list}) => {
         setTitle(list.title);
     }, [list.title]);
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         renameList(list._id, {title});
         setEditing(false);

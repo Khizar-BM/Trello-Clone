@@ -9,9 +9,7 @@ import {BoardContext} from "../../contexts/boardStore";
 const ArchivedLists = () => {
     const {board: {board: {listObjects}}, archiveList} = useContext(BoardContext);
 
-    const onSubmit = async (listId) => {
-        archiveList(listId, false);
-    };
+    const onSubmit = (listId) => archiveList(listId, false);
 
     return (
         <div>

@@ -10,7 +10,7 @@ const CreateBoard = () => {
     const [title, setTitle] = useState('');
     const {addBoard} = useContext(BoardContext);
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         addBoard({title});
     };

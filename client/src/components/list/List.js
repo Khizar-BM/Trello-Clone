@@ -14,7 +14,6 @@ const List = ({listId, index}) => {
     //to add useMemo
     const list = listObjects.find((object) => object._id === listId)
 
-
     useEffect(() => {
         getList(listId);
     }, [listId]);

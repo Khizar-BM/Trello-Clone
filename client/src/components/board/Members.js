@@ -27,7 +27,7 @@ const Members = () => {
         }
     };
 
-    const onSubmit = async () => {
+    const onSubmit = () => {
         addMember(user._id);
         setUser(null);
         setInputValue('');

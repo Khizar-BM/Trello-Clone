@@ -45,7 +45,7 @@ const Card = ({cardId, list, index}) => {
         cardRef && cardRef.current && setHeight(cardRef.current.clientHeight);
     }, [list, card, cardRef]);
 
-    const onSubmitEdit = async (e) => {
+    const onSubmitEdit = (e) => {
         e.preventDefault();
         editCard(cardId, {title});
         setEditing(false);

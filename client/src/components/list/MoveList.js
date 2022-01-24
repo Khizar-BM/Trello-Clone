@@ -29,7 +29,7 @@ const MoveList = ({listId, closeMenu}) => {
         setPosition(mappedListObjects.findIndex((list) => list.list._id === listId));
     }, [lists, listId, listObjects]);
 
-    const onSubmit = async () => {
+    const onSubmit = () => {
         moveList(listId, {toIndex: position});
         setOpenDialog(false);
         closeMenu();

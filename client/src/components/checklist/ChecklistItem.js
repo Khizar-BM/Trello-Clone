@@ -18,22 +18,20 @@ const ChecklistItem = ({item, card}) => {
         setText(item.text);
     }, [item.text]);
 
-    const onEdit = async (e) => {
+    const onEdit = (e) => {
         e.preventDefault();
         editChecklistItem(card._id, item._id, {text});
         setEditing(false);
     };
 
-    const onComplete = async (e) => {
-
+    const onComplete = () => {
         completeChecklistItem({
             cardId: card._id, complete: e.target.checked, itemId: item._id,
         });
     };
 
-    const onDelete = async () => {
-        deleteChecklistItem(card._id, item._id);
-    };
+    const onDelete = () => deleteChecklistItem(card._id, item._id);
+
 
     return (<div className={classes.checklistItem}>
         {editing ? (<form onSubmit={onEdit} className={classes.checklistFormLabel}>

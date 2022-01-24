@@ -12,7 +12,7 @@ const BoardTitle = ({board}) => {
         setTitle(board.title);
     }, [board.title]);
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         renameBoard(board._id, {title});
         setEditing(false);

@@ -5,11 +5,11 @@ import {AlertContext} from "../../contexts/alertStore";
 const Alert = () => {
     const {alerts} = useContext(AlertContext)
     return (
-        (alerts.length>0? alerts.map((alert) => (
+        (alerts.length ? alerts.map((alert) => (
             <AlertMUI severity={alert.alertType} key={alert.id}>
                 {alert.msg}
             </AlertMUI>
-        )): "")
+        )) : "")
     );
 };
 

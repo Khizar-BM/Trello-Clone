@@ -9,17 +9,11 @@ const ListMenu = ({listId}) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const {archiveList} = useContext(BoardContext);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const handleClick = (event) => setAnchorEl(event.currentTarget);
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const handleClose = () => setAnchorEl(null);
 
-    const archive = async () => {
-        archiveList(listId, true);
-    };
+    const archive = () => archiveList(listId, true);
 
     return (
         <div>
