@@ -15,7 +15,7 @@ const MoveCard = ({cardId, setOpen, thisList}) => {
     const [listTitle, setListTitle] = useState('');
     const [position, setPosition] = useState(0);
     const [positions, setPositions] = useState([0]);
-    const {board: {board: {lists, listObjects, cardObjects}, moveCard}} = useContext(BoardContext);
+    const {board: {board: {lists, listObjects, cardObjects}}, moveCard} = useContext(BoardContext);
     const listObjectsFiltered = listObjects.sort(
         (a, b) =>
             lists.findIndex((id) => id === a._id) - lists.findIndex((id) => id === b._id)
