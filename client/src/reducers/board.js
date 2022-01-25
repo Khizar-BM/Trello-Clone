@@ -25,14 +25,14 @@ import {
   DELETE_CHECKLIST_ITEM,
 } from '../actions/types';
 
-const initialState = {
+export const initialState = {
   boards: [],
   board: null,
   dashboardLoading: true,
   error: {},
 };
 
-export default function (state = initialState, action) {
+export default function (state, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -60,8 +60,8 @@ export default function (state = initialState, action) {
       };
     case BOARD_ERROR:
       return {
-        ...state,
-        error: payload,
+        ...payload.prevState,
+        error: payload.error,
       };
     case GET_LIST:
       return {

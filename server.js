@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const logger = require('morgan');
 require('dotenv').config();
 
 const app = express();
@@ -24,6 +25,7 @@ const app = express();
 
 // Init middleware
 app.use(express.json({ extended: false }));
+app.use(logger("dev"))
 
 // Define routes
 app.use('/api/users', require('./routes/api/users'));

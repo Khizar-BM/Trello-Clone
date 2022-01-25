@@ -1,25 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../actions/auth';
+import React, {useContext} from 'react';
+import {Link} from 'react-router-dom';
+import {AuthContext} from "../../contexts/authStore";
 
 const Navbar = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const dispatch = useDispatch();
+    const {auth: {isAuthenticated}, logout,} = useContext(AuthContext)
 
-  if (!isAuthenticated) {
-    return '';
-  }
+    if (!isAuthenticated) {
+        return '';
+    }
 
-  return (
-    <nav className='navbar'>
-      <Link to='/dashboard'>Home</Link>
-      <Link to='/dashboard'>TrelloClone</Link>
-      <Link to='/' onClick={() => dispatch(logout())}>
-        Logout
-      </Link>
-    </nav>
-  );
+    return (
+        <nav className='navbar'>
+            <Link to='/dashboard'>Home</Link>
+            <Link to='/dashboard'>TrelloClone</Link>
+            <Link to='/' onClick={() => logout()}>
+                Logout
+            </Link>
+        </nav>
+    );
 };
 
 export default Navbar;
