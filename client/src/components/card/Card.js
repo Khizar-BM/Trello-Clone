@@ -1,4 +1,4 @@
-import React, {Fragment, useRef, useState, useEffect, useContext, useMemo} from 'react';
+import React, {useRef, useState, useEffect, useContext, useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {Draggable} from 'react-beautiful-dnd';
 import getInitials from '../../utils/getInitials';
@@ -56,7 +56,7 @@ const Card = ({cardId, list, index}) => {
     return !card || (card && card.archived) ? (
         ''
     ) : (
-        <Fragment>
+        <>
             <CardModal
                 cardId={cardId}
                 open={openModal}
@@ -167,7 +167,7 @@ const Card = ({cardId, list, index}) => {
                     </div>
                 </form>
             )}
-        </Fragment>
+        </>
     );
 };
 
