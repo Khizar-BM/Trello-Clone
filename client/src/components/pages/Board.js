@@ -13,22 +13,21 @@ import {AuthContext} from "../../contexts/authStore";
 
 const Board = () => {
     const params = useParams();
+    const {id} = params
     const {board: {board}, getBoard, moveCard, moveList} = useContext(BoardContext);
     const {auth: {isAuthenticated}} = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        getBoard(params.id);
-    }, [params.id]);
+        getBoard(id);
+    }, [id]);
 
     useEffect(() => {
         if (board?.title) document.title = board.title + ' | TrelloClone';
     }, [board?.title]);
 
     useEffect(() => {
-            if (!isAuthenticated) {
-                navigate("/");
-            }
+            if (!isAuthenticated) navigate("/");
         }, [isAuthenticated]
     )
 

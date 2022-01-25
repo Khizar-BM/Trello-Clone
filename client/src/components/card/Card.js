@@ -1,4 +1,4 @@
-import React, {Fragment, useRef, useState, useEffect, useContext} from 'react';
+import React, {Fragment, useRef, useState, useEffect, useContext, useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {Draggable} from 'react-beautiful-dnd';
 import getInitials from '../../utils/getInitials';
@@ -21,7 +21,8 @@ const Card = ({cardId, list, index}) => {
     const [completeItems, setCompleteItems] = useState(0);
     const cardRef = useRef(null);
     const {board: {board: {cardObjects}}, getCard, editCard} = useContext(BoardContext);
-    const card = cardObjects.find((object) => object._id === cardId);
+
+    const card = useMemo(() => cardObjects.find((object) => object._id === cardId), [cardObjects, cardId])
 
 
     useEffect(() => {
