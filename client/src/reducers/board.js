@@ -60,8 +60,8 @@ export default function (state, action) {
       };
     case BOARD_ERROR:
       return {
-        ...state,
-        error: payload,
+        ...payload.prevState,
+        error: payload.error,
       };
     case GET_LIST:
       return {

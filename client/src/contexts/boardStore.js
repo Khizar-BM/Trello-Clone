@@ -324,21 +324,25 @@ const BoardStore = (props) => {
         }
     };
     const moveList = async (listId, formData) => {
+        const prevState = {...board}
         try {
             const body = JSON.stringify(formData);
-            console.log(formData)
 
-            const res = await axios.patch(`/api/lists/move/${listId}`, body, config);
-            console.log(res)
+            const tempState = [...board.board.lists]
+            tempState.splice(tempState.indexOf(listId), 1);
+            tempState.splice(formData.toIndex, 0, listId);
 
             dispatch({
                 type: MOVE_LIST,
-                payload: res.data,
+                payload: [...tempState],
             });
+            const res = await axios.patch(`/api/lists/move/${listId}`, body, config);
+
         } catch (err) {
+            setAlert('Could not move boards', 'error');
             dispatch({
                 type: BOARD_ERROR,
-                payload: {msg: err.response.statusText, status: err.response.status},
+                payload: {error: {msg: err.response.statusText, status: err.response.status}, prevState},
             });
         }
     };
