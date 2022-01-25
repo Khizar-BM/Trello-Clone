@@ -5,18 +5,14 @@ import {AuthContext} from "../../contexts/authStore";
 const Navbar = () => {
     const {auth: {isAuthenticated}, logout,} = useContext(AuthContext)
 
-    if (!isAuthenticated) {
-        return '';
-    }
-
     return (
-        <nav className='navbar'>
+        (isAuthenticated ? <nav className='navbar'>
             <Link to='/dashboard'>Home</Link>
             <Link to='/dashboard'>TrelloClone</Link>
             <Link to='/' onClick={() => logout()}>
                 Logout
             </Link>
-        </nav>
+        </nav> : "")
     );
 };
 
