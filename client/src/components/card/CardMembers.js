@@ -1,50 +1,49 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import { addCardMember } from '../../actions/board';
-import { Checkbox, FormGroup, FormControlLabel, FormControl } from '@material-ui/core';
+import {Checkbox, FormGroup, FormControlLabel, FormControl} from '@material-ui/core';
 import useStyles from '../../utils/modalStyles';
+import {BoardContext} from "../../contexts/boardStore";
 
-const CardMembers = ({ card }) => {
-  const classes = useStyles();
-  const boardMembers = useSelector((state) => state.board.board.members);
-  const members = card.members.map((member) => member.user);
-  const dispatch = useDispatch();
+const CardMembers = ({card}) => {
+    const classes = useStyles();
+    const {board: {board: {members}}, addCardMember} = useContext(BoardContext);
 
-  return (
-    <div>
-      <h3 className={classes.membersTitle}>Members</h3>
-      <FormControl component='fieldset'>
-        <FormGroup>
-          {boardMembers.map((member) => (
-            <FormControlLabel
-              key={member.user}
-              control={
-                <Checkbox
-                  checked={members.indexOf(member.user) !== -1}
-                  onChange={async (e) =>
-                    dispatch(
-                      addCardMember({
-                        add: e.target.checked,
-                        cardId: card._id,
-                        userId: e.target.name,
-                      })
-                    )
-                  }
-                  name={member.user}
-                />
-              }
-              label={member.name}
-            />
-          ))}
-        </FormGroup>
-      </FormControl>
-    </div>
-  );
+    const cardMembers = card.members.map((member) => member.user);
+
+    return (
+        <div>
+            <h3 className={classes.membersTitle}>Members</h3>
+            <FormControl component='fieldset'>
+                <FormGroup>
+                    {members.map((member) => (
+                        <FormControlLabel
+                            key={member.user}
+                            control={
+                                <Checkbox
+                                    checked={cardMembers.indexOf(member.user) !== -1}
+                                    onChange={async (e) =>
+
+                                        addCardMember({
+                                            add: e.target.checked,
+                                            cardId: card._id,
+                                            userId: e.target.name,
+                                        })
+
+                                    }
+                                    name={member.user}
+                                />
+                            }
+                            label={member.name}
+                        />
+                    ))}
+                </FormGroup>
+            </FormControl>
+        </div>
+    );
 };
 
 CardMembers.propTypes = {
-  card: PropTypes.object.isRequired,
+    card: PropTypes.object.isRequired,
 };
 
 export default CardMembers;
