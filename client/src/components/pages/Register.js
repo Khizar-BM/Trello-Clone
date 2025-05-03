@@ -3,7 +3,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -34,9 +33,7 @@ const Register = () => {
     }, []);
 
     useEffect(() => {
-            if (isAuthenticated) {
-                navigate("/dashboard");
-            }
+            if (isAuthenticated) navigate("/dashboard");
         }, [isAuthenticated]
     )
 

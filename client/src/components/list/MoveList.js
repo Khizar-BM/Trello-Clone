@@ -1,6 +1,5 @@
-import React, {Fragment, useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import PropTypes from 'prop-types';
-
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -35,7 +34,7 @@ const MoveList = ({listId, closeMenu}) => {
         closeMenu();
     };
 
-    return (<Fragment>
+    return (<>
         <div onClick={() => setOpenDialog(true)}>Move This List</div>
         <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
             <div className={classes.moveListTop}>
@@ -69,7 +68,7 @@ const MoveList = ({listId, closeMenu}) => {
                 </FormControl>
             </DialogActions>
         </Dialog>
-    </Fragment>);
+    </>);
 };
 
 MoveList.propTypes = {

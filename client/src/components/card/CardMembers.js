@@ -7,7 +7,6 @@ import {BoardContext} from "../../contexts/boardStore";
 const CardMembers = ({card}) => {
     const classes = useStyles();
     const {board: {board: {members}}, addCardMember} = useContext(BoardContext);
-
     const cardMembers = card.members.map((member) => member.user);
 
     return (

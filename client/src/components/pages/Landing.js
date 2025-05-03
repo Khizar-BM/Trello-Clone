@@ -12,9 +12,7 @@ const Landing = () => {
     }, []);
 
     useEffect(() => {
-            if (isAuthenticated) {
-                navigate("/dashboard");
-            }
+            if (isAuthenticated) navigate("/dashboard");
         }, [isAuthenticated]
     )
 

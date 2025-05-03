@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect, useContext} from 'react';
+import React, {useRef, useState, useEffect, useContext, useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {Draggable, Droppable} from 'react-beautiful-dnd';
 import ListTitle from './ListTitle';
@@ -11,8 +11,8 @@ import {BoardContext} from "../../contexts/boardStore";
 const List = ({listId, index}) => {
     const [addingCard, setAddingCard] = useState(false);
     const {board: {board: {listObjects}}, getList} = useContext(BoardContext);
-    //to add useMemo
-    const list = listObjects.find((object) => object._id === listId)
+
+    const list = useMemo(() => listObjects.find((object) => object._id === listId), [listObjects, listId])
 
     useEffect(() => {
         getList(listId);

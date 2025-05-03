@@ -20,9 +20,7 @@ const Dashboard = () => {
     }, []);
 
     useEffect(() => {
-        if (!isAuthenticated) {
-            navigate("/");
-        }
+        if (!isAuthenticated) navigate("/");
     }, [isAuthenticated])
 
     return (<div className='dashboard-and-navbar'>

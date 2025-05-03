@@ -26,7 +26,6 @@ const Login = () => {
     });
     const {auth: {isAuthenticated}, login} = useContext(AuthContext)
 
-
     const {email, password} = formData;
 
     useEffect(() => {
@@ -34,9 +33,7 @@ const Login = () => {
     }, []);
 
     useEffect(() => {
-            if (isAuthenticated) {
-                navigate("/dashboard");
-            }
+            if (isAuthenticated) navigate("/dashboard");
         }, [isAuthenticated]
     )
 

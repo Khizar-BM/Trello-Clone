@@ -32,7 +32,6 @@ const ChecklistItem = ({item, card}) => {
 
     const onDelete = () => deleteChecklistItem(card._id, item._id);
 
-
     return (<div className={classes.checklistItem}>
         {editing ? (<form onSubmit={onEdit} className={classes.checklistFormLabel}>
             <TextField
